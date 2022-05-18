@@ -32,10 +32,11 @@ upload_file = st.file_uploader('ファイルのアップロード', type=['mp3',
 if upload_file is not None:
     content = upload_file.read()
     name = upload_file.name
-    fp = 'Desktop/' + name
+    fp = os.getenv("HOMEDRIVE") + os.getenv("HOMEPATH") + "\\Desktop\\" + name
     st.subheader('ファイル詳細')
     file_details = {'filename':upload_file.name, 'filetype':
                     upload_file.type, 'filesize':upload_file.size}
+    st.write(fp)
     st.write(file_details)
     st.subheader('音声の再生')
     st.audio(content)
